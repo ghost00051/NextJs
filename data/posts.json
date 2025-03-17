@@ -1,0 +1,15 @@
+[
+    {
+      "slug": "nextjs-guide",
+      "title": "Руководство по Next.js",
+      "content": "Это содержание статьи о Next.js.",
+      "description": "Краткое описание статьи о Next.js."
+    },
+    {
+      "slug": "react-intro",
+      "title": "Введение в React",
+      "content": "Это содержание статьи о React.",
+      "description": "Краткое описание статьи о React."
+    }
+    
+  ]
