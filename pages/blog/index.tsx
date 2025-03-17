@@ -16,7 +16,7 @@ const Blog = ({ posts }: BlogProps) => {
     <Layout>
       <Head>
         <title>Блог</title>
-        <meta name="description" content="Список статей блога." />
+        <meta name="description" content="Список статей блога" />
       </Head>
       <h1 className="text-4xl">Блог</h1>
       <ul>
@@ -31,14 +31,24 @@ const Blog = ({ posts }: BlogProps) => {
 };
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  const res = await fetch('http://localhost:3000/data/posts.json');
-  const posts: Post[] = await res.json();
-
-  return {
-    props: {
-      posts,
-    },
-  };
+  try {
+    const res = await fetch('http://localhost:3000/data/posts.json');
+    if (!res.ok) {
+      throw new Error('Network response was not ok');
+    }
+    const posts: Post[] = await res.json();
+    return {
+      props: {
+        posts,
+      },
+    };
+  } catch (error) {
+    console.error('Failed to fetch posts:', error);
+    return {
+      props: {
+        posts: [],
+      },
+    };
+  }
 };
-
 export default Blog;
