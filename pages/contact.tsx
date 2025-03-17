@@ -1,12 +1,12 @@
 import { useForm } from 'react-hook-form';
 import Head from 'next/head';
 import Layout from '../components/Layout';
-import { ContactFormData } from '../types'; // Импортируем тип
+import { ContactFormData } from '../types'; 
 
 const Contact = () => {
-    const { register, handleSubmit, formState: { errors } } = useForm<ContactFormData>(); // Указываем тип
+    const { register, handleSubmit, formState: { errors } } = useForm<ContactFormData>(); 
 
-    const onSubmit = (data: ContactFormData) => { // Используем тип
+    const onSubmit = (data: ContactFormData) => { 
         console.log(data);
     };
 
