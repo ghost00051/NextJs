@@ -31,8 +31,8 @@ const Blog = ({ posts }: BlogProps) => {
 };
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  const res = await fetch('http://localhost:3000/data/posts.json');
-  const posts: Post[] = await res.json();
+  const res = await fetch('/data/posts.json');
+   const posts: Post[] = await res.json();
 
   return {
     props: {
