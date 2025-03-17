@@ -30,13 +30,20 @@ const Blog = ({ posts }: BlogProps) => {
   );
 };
 
-export const getServerSideProps: GetServerSideProps = async () => {
+export const getServerSideProps: GetServerSideProps = async ({ req }) => {
   try {
-    const res = await fetch('http://localhost:3000/data/posts.json');
+    const protocol = req.headers['x-forwarded-proto'] || 'http';
+    const host = req.headers.host;
+    const baseUrl = `${protocol}://${host}`;
+
+    const res = await fetch(`${baseUrl}/data/posts.json`);
+    
     if (!res.ok) {
       throw new Error('Network response was not ok');
     }
+    
     const posts: Post[] = await res.json();
+    
     return {
       props: {
         posts,
@@ -51,4 +58,5 @@ export const getServerSideProps: GetServerSideProps = async () => {
     };
   }
 };
+
 export default Blog;
